@@ -4,14 +4,15 @@ class Node:
         self.next = None
 
 class LinkedList:
-    def __init__(self, *nodes: Node):
+    def __init__(self, *data):
+        nodes = [Node(i) for i in data]
         self.start = nodes[0]
         for i in range(len(nodes)-1):
             nodes[i].next = nodes[i+1]
 
     @classmethod
     def from_list(cls, data_list: list):
-        return cls(*[Node(i) for i in data_list])
+        return cls(*data_list)
 
     def __repr__(self) -> str:
         x = self.start
@@ -24,11 +25,3 @@ class LinkedList:
                 break
             x = x.next
         return s
-
-n1 = Node(1)
-n2 = Node(2)
-n3 = Node(3)
-l = LinkedList(n1, n2, n3)
-
-l2 = LinkedList.from_list([1, 5, 9])
-print(l2)
